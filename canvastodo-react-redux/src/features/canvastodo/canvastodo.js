@@ -1,6 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 import styles from './canvastodo.module.css';
 import React, { useState } from 'react';
+
 import { 
   addTask, 
   selectTask,
@@ -10,14 +11,13 @@ import {
 } from './canvastodoSlice.js';
 
 
-
 export function CanvasTodo () {
   const todo = useSelector(selectTask);
   const listOfToDo = useSelector(selectListOfTask);
   const dispatch = useDispatch();
 
   const addtoList = () => {
-    let currentTask = {task:todo, id:Date.now(),done:false,notes:""};
+    let currentTask = {task:todo, id:Date.now(), done:false, notes:""};
     dispatch(addTask({
       todo: currentTask,
     }));
@@ -36,7 +36,7 @@ export function CanvasTodo () {
 
   const [isOpen, setIsOpen] = useState(false);
  
-  const togglePopup = () => {
+  const toggleComment = () => {
     setIsOpen(!isOpen);
   }
 
@@ -45,7 +45,7 @@ export function CanvasTodo () {
       <>
         <div className={styles.popupbox}>
           <div className={styles.box}>
-            <span className={styles.closeicon} onClick={props.handleClose}>x</span>
+            <span className={styles.closeicon} onClick={props.closeComment}>x</span>
             {props.content}
           </div>
         </div>
@@ -66,7 +66,7 @@ export function CanvasTodo () {
           listOfToDo.map(
           (item) => 
           <li key={item.id}> 
-          <ToDoTask value={item.task} onClick={() => removeToDo(item.id)} onPress={() => togglePopup()}/> </li>)
+          <ToDoTask value={item.task} onClick={() => removeToDo(item.id)} onPress={() => toggleComment()}/> </li>)
         }
           {/* <ListOfTask  listOfTodo={listOfTodo} /> */}
         </ul>
@@ -86,7 +86,7 @@ export function CanvasTodo () {
               <button>Save Task Commment</button>
             </>
           }
-          handleClose={togglePopup}
+          closeComment={toggleComment}
           />
         }
     </div>
