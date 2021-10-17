@@ -1,8 +1,14 @@
 
 // import fetch from "node-fetch";
 
+<<<<<<< HEAD
 import { api } from api.js
 //making sure that I have the currect fetch function
+=======
+
+
+
+>>>>>>> cce6d1066d470bb15bdb612dafc020175f45c985
 let url = `https://api.openweathermap.org/data/2.5/weather?q=London&appid=${api}`
 // console.log.fetch(url);
 async function fetchapi(url) {
