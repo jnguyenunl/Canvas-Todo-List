@@ -17,10 +17,12 @@ export function CanvasTodo () {
   const dispatch = useDispatch();
 
   const addtoList = () => {
-    let currentTask = {task:todo, id:Date.now(), done:false, notes:""};
-    dispatch(addTask({
-      todo: currentTask,
-    }));
+    if(todo !== '' && todo !== undefined){
+      let currentTask = {task:todo, id:Date.now(), done:false, notes:""};
+      dispatch(addTask({
+        todo: currentTask,
+      }));
+    } 
   };
   
   const textChange = (input) => {
@@ -56,7 +58,7 @@ export function CanvasTodo () {
   return (
     <main>
       <div>
-        <label>Canvas ToDo List</label><br/>
+        <label className={styles.red} >Canvas ToDo List</label><br/>
         <input type="text" value={todo} onChange={(event) => textChange(event.target.value)}/>
         <button onClick={addtoList}>  add todo </button> <br/>
       </div>
@@ -78,11 +80,10 @@ export function CanvasTodo () {
       </div>
       <div>
         {
-          isOpen && <TaskComment
-          content={
+          isOpen && <TaskComment content={
             <>
-              <b>Task </b>
-              <p> Task Outline</p>
+              <b>Task</b>
+              <p>Task Outline</p>
               <button>Save Task Commment</button>
             </>
           }
