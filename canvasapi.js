@@ -1,13 +1,8 @@
 
 // import fetch from "node-fetch";
 
-let API = '6507~2qsTHW8vO9ANDZlWDuYXMgZD79PTbmxpCZJ8HtyAb0txjBaNRoYNyd1okenr4uDn';
-let course = '/v1/courses';
-let canvas = 'https://canvas.unl.edu/';
-// let url = canvas.concat(API,course);
-// let url = 'https://canvas.unl.edu/6507~2qsTHW8vO9ANDZlWDuYXMgZD79PTbmxpCZJ8HtyAb0txjBaNRoYNyd1okenr4uDn/v1/courses';
-let api = '865cca08a86be1be4102ba549a465786';
-
+import { api } from api.js
+//making sure that I have the currect fetch function
 let url = `https://api.openweathermap.org/data/2.5/weather?q=London&appid=${api}`
 // console.log.fetch(url);
 async function fetchapi(url) {
