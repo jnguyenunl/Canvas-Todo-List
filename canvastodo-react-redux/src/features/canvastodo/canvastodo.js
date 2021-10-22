@@ -1,6 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 import styles from './canvastodo.module.css';
 import React, { useState } from 'react';
+import Draggable from 'react-draggable';
 
 import { 
   addTask, 
@@ -18,7 +19,12 @@ export function CanvasTodo () {
 
   const addtoList = () => {
     if(todo !== '' && todo !== undefined){
-      let currentTask = {task:todo, id:Date.now(), done:false, notes:""};
+      let currentTask = {
+        task: todo, 
+        id: Date.now(), 
+        done: false, 
+        notes: ""
+      };
       dispatch(addTask({
         todo: currentTask,
       }));
@@ -62,18 +68,26 @@ export function CanvasTodo () {
         <input type="text" value={todo} onChange={(event) => textChange(event.target.value)}/>
         <button onClick={addtoList}>  add todo </button> <br/>
       </div>
+      
+        <div>
+          
+            <ul>
+            {
+              listOfToDo.map(
+              (item) => 
+              <Draggable>
+              <li key={item.id}> 
+              <ToDoTask value={item.task} onClick={() => removeToDo(item.id)} onPress={() => toggleComment()}/> </li>
+              </Draggable>)
+            }
+              
+              {/* <ListOfTask  listOfTodo={listOfTodo} /> */}
+            </ul>
+          
+        </div>
+        
       <div>
-        <ul>
-        {
-          listOfToDo.map(
-          (item) => 
-          <li key={item.id}> 
-          <ToDoTask value={item.task} onClick={() => removeToDo(item.id)} onPress={() => toggleComment()}/> </li>)
-        }
-          {/* <ListOfTask  listOfTodo={listOfTodo} /> */}
-        </ul>
-      </div>
-      <div>
+      
         <label>
           Total Number of Tasks Uncompleted: {listOfToDo.length}
         </label>
@@ -98,7 +112,7 @@ export function CanvasTodo () {
 
 
 export function ToDoTask(props) {
-
+  
   return (
     <>
       <input type="text" value={props.value}/>
