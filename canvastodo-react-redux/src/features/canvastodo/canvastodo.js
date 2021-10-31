@@ -9,8 +9,10 @@ import {
   setItem,
   selectListOfTask,
   removeTask,
+  editNotes,
 } from './canvastodoSlice.js';
 
+var taskItem = null
 
 export function CanvasTodo () {
   const todo = useSelector(selectTask);
@@ -41,10 +43,18 @@ export function CanvasTodo () {
       task: item,
     }));
   };
+  const changeNotes = (input, note) => {
+    setIsOpen(!isOpen)
+    dispatch(editNotes({
+      item: input,
+      notes: note,
+    }));
+  };
 
   const [isOpen, setIsOpen] = useState(false);
  
-  const toggleComment = () => {
+  const toggleComment = (item) => {
+    taskItem = item
     setIsOpen(!isOpen);
   }
 
@@ -77,7 +87,7 @@ export function CanvasTodo () {
               (item) => 
               <Draggable>
               <li key={item.id}> 
-              <ToDoTask value={item.task} onClick={() => removeToDo(item.id)} onPress={() => toggleComment()}/> </li>
+              <ToDoTask value={item.task} onClick={() => removeToDo(item.id)} onPress={() => toggleComment(item)}/> </li>
               </Draggable>)
             }
               
@@ -96,9 +106,11 @@ export function CanvasTodo () {
         {
           isOpen && <TaskComment content={
             <>
-              <b>Task</b>
-              <p>Task Outline</p>
-              <button>Save Task Commment</button>
+              <b>{taskItem.task}</b>
+              <br></br>
+              <textarea id="txt" rows="4" cols="150">{taskItem.note}</textarea>
+              <br></br>
+              <button onClick={() => changeNotes(taskItem.id, document.getElementById("txt").value)}>Save Task Commment</button>
             </>
           }
           closeComment={toggleComment}

@@ -25,6 +25,15 @@ const canvastodoSlice = createSlice({
       } = action.payload
       canvasTodo.item = item;
     },
+    editNotes: (canvasTodo, action) => {
+      let {
+        task,
+        notes,
+      } = action.payload
+      let listTask = canvasTodo.todolist.find(t => t.id === task)
+      listTask.notes = notes
+      task = listTask.id
+    },
   },
 });
 
@@ -38,6 +47,7 @@ export const {
   addTask,
   setItem,
   removeTask,
+  editNotes,
 } = canvastodoSlice.actions;
 
 export default canvastodoSlice;
