@@ -43,10 +43,10 @@ export function CanvasTodo () {
       task: item,
     }));
   };
-  const changeNotes = (input, note) => {
+  const changeNotes = (item, note) => {
     setIsOpen(!isOpen)
     dispatch(editNotes({
-      item: input,
+      task: item,
       notes: note,
     }));
   };
@@ -108,7 +108,7 @@ export function CanvasTodo () {
             <>
               <b>{taskItem.task}</b>
               <br></br>
-              <textarea id="txt" rows="4" cols="150">{taskItem.note}</textarea>
+              <textarea id="txt" rows="4" cols="150">{taskItem.notes}</textarea>
               <br></br>
               <button onClick={() => changeNotes(taskItem.id, document.getElementById("txt").value)}>Save Task Commment</button>
             </>
