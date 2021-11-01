@@ -19,7 +19,7 @@ const canvastodoSlice = createSlice({
         task,
       } = action.payload;
       let listTask = canvasTodo.todolist.find(t => t.id === task)
-      if (a.done === true) {
+      if (listTask.done === true) {
         listTask.task = listTask.task.replace(/[\u0336]/g, '')
         listTask.done = false
         task.id = listTask.id
