@@ -1,5 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+function line(text){
+  return text
+  .split('')
+  .map(char => char + '\u0336')
+  .join('')
+}
+
 const canvastodoSlice = createSlice({
   name: 'canvasTodo',
   initialState: {
@@ -11,7 +18,16 @@ const canvastodoSlice = createSlice({
       const {
         task,
       } = action.payload;
-      canvasTodo.todolist = canvasTodo.todolist.filter(tasks => tasks.id !== task);
+      let listTask = canvasTodo.todolist.find(t => t.id === task)
+      if (a.done === true) {
+        a.task = a.task.replace(/[\u0336]/g, '')
+        a.done = false
+        task.id = a.id
+      } else {
+        a.task = line(a.task)
+        a.done = true
+        task = a.id
+      }
     },
     addTask: (canvasTodo, action) => {
       const {

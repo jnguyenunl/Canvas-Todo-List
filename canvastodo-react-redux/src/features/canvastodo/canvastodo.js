@@ -99,14 +99,14 @@ export function CanvasTodo () {
       <div>
       
         <label>
-          Total Number of Tasks Uncompleted: {listOfToDo.length}
+          Total Number of Tasks Uncompleted: {listOfToDo.filter(item => item.done === false).length}
         </label>
       </div>
       <div>
         {
           isOpen && <TaskComment content={
             <>
-              <b>{taskItem.task}</b>
+              <b>{taskItem.task.replace(/[\u0336]/g, '')}</b>
               <br></br>
               <textarea id="txt" rows="4" cols="150">{taskItem.notes}</textarea>
               <br></br>
