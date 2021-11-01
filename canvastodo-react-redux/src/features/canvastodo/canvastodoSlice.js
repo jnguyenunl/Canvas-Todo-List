@@ -26,7 +26,7 @@ const canvastodoSlice = createSlice({
       } else {
         listTask.task = line(listTask.task)
         listTask.done = true
-        task = listTask.id
+        task.id = listTask.id
       }
     },
     addTask: (canvasTodo, action) => {
