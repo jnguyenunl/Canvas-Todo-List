@@ -20,13 +20,13 @@ const canvastodoSlice = createSlice({
       } = action.payload;
       let listTask = canvasTodo.todolist.find(t => t.id === task)
       if (a.done === true) {
-        a.task = a.task.replace(/[\u0336]/g, '')
-        a.done = false
-        task.id = a.id
+        listTask.task = listTask.task.replace(/[\u0336]/g, '')
+        listTask.done = false
+        task.id = listTask.id
       } else {
-        a.task = line(a.task)
-        a.done = true
-        task = a.id
+        listTask.task = line(listTask.task)
+        listTask.done = true
+        task = listTask.id
       }
     },
     addTask: (canvasTodo, action) => {
