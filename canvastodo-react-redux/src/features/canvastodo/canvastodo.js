@@ -52,10 +52,15 @@ export function CanvasTodo () {
   };
 
   const [isOpen, setIsOpen] = useState(false);
- 
+  const [importIsOpen, importSetIsOpen] = useState(false);
+  
   const toggleComment = (item) => {
     taskItem = item
     setIsOpen(!isOpen);
+  }
+
+  const toggleImport = () => {
+    importSetIsOpen(!importIsOpen);
   }
 
   function TaskComment(props) {
@@ -71,12 +76,26 @@ export function CanvasTodo () {
     );
   }
 
+  function TaskImport(props) {
+    return(
+      <>
+        <div className={styles.popupbox}>
+          <div className={styles.box}>
+            <span className={styles.closeicon} onClick={props.closeImport}>x</span>
+            {props.content}
+          </div>
+        </div>
+      </>
+    );
+  }
+
   return (
     <main>
       <div>
         <label className={styles.red} >Canvas ToDo List</label><br/>
         <input type="text" value={todo} onChange={(event) => textChange(event.target.value)}/>
-        <button onClick={addtoList}>  add todo </button> <br/>
+        <button onClick={addtoList}>  Add ToDo </button>
+        <button onClick={() => toggleImport()}>  Import </button> <br/>
       </div>
       
         <div>
@@ -114,6 +133,23 @@ export function CanvasTodo () {
             </>
           }
           closeComment={toggleComment}
+          />
+        }
+    </div>
+    <div>
+        {
+          importIsOpen && <TaskImport content={
+            <>
+              <b>Canvas Login</b>
+              <br></br>
+              <input type="text" placeholder="Canvas Username" id="username"/>
+              <br></br>
+              <input type="text" placeholder="Password" id="password"/>
+              <br></br>
+              <button>Import Tasks</button>
+            </>
+          }
+          closeImport={toggleImport}
           />
         }
     </div>
