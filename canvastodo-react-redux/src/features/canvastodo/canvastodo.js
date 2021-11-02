@@ -97,9 +97,7 @@ export function CanvasTodo () {
         <button onClick={addtoList}>  Add ToDo </button>
         <button onClick={() => toggleImport()}>  Import </button> <br/>
       </div>
-      
         <div>
-          
             <ul>
             {
               listOfToDo.map(
@@ -108,15 +106,11 @@ export function CanvasTodo () {
               <li key={item.id}> 
               <ToDoTask value={item.task} onClick={() => removeToDo(item.id)} onPress={() => toggleComment(item)}/> </li>
               </Draggable>)
-            }
-              
+            }  
               {/* <ListOfTask  listOfTodo={listOfTodo} /> */}
-            </ul>
-          
+            </ul>      
         </div>
-        
-      <div>
-      
+      <div>  
         <label>
           Total Number of Tasks Uncompleted: {listOfToDo.filter(item => item.done === false).length}
         </label>
@@ -141,11 +135,11 @@ export function CanvasTodo () {
           importIsOpen && <TaskImport content={
             <>
               <b>Canvas Login</b>
-              <br></br>
+              <br/>
               <input type="text" placeholder="Canvas Username" id="username"/>
-              <br></br>
-              <input type="text" placeholder="Password" id="password"/>
-              <br></br>
+              <br/>
+              <input type="password" placeholder="Password" id="password"/>
+              <br/>
               <button>Import Tasks</button>
             </>
           }
@@ -157,10 +151,7 @@ export function CanvasTodo () {
   );
 }
 
-
-
-export function ToDoTask(props) {
-  
+export function ToDoTask(props) { 
   return (
     <>
       <input type="text" value={props.value}/>
