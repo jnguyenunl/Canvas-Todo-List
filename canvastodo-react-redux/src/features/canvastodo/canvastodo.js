@@ -12,7 +12,7 @@ import {
   editNotes,
 } from './canvastodoSlice.js';
 
-var taskItem = null
+var taskItem = undefined;
 
 export function CanvasTodo () {
   const todo = useSelector(selectTask);
@@ -91,11 +91,13 @@ export function CanvasTodo () {
 
   return (
     <main>
-      <div>
-        <label className={styles.red} >Canvas ToDo List</label><br/>
-        <input type="text" value={todo} onChange={(event) => textChange(event.target.value)}/>
-        <button onClick={addtoList}>  Add ToDo </button>
-        <button onClick={() => toggleImport()}>  Import </button> <br/>
+      <div className={styles.spacer}>
+        <label className={styles.header} >Canvas ToDo List</label><br/>
+      </div>
+      <div className={styles.taskbar}>
+        <input  className={styles.padder} type="text" value={todo} onChange={(event) => textChange(event.target.value)}/>
+        <button className={styles.button} onClick={addtoList}>  Add ToDo </button>
+        <button className={styles.button} onClick={() => toggleImport()}>  Import </button> <br/>
       </div>
         <div>
             <ul>
@@ -120,9 +122,9 @@ export function CanvasTodo () {
           isOpen && <TaskComment content={
             <>
               <b>{taskItem.task.replace(/[\u0336]/g, '')}</b>
-              <br></br>
+              <br/>
               <textarea id="txt" rows="4" cols="150">{taskItem.notes}</textarea>
-              <br></br>
+              <br/>
               <button onClick={() => changeNotes(taskItem.id, document.getElementById("txt").value)}>Save Task Commment</button>
             </>
           }
