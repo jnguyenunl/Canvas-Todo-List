@@ -1,7 +1,10 @@
 # Canvas Todo List
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
 
-## About 
+#### Group Members
+Josh Bearden, Shelby Miller, James Nguyen, Matthew Thomas
+
+#### About 
 This is a clean-cut and clear new Canvas LMS To-Do list tool interface where users can customize. The Redux React application uses the existing Canvas API to pull outstanding To-Do items into a separate, customizable To-Do list. Users will input their canvas information and receive a list of their upcoming To-Do items. The user will be able to prioritize the list, add comments/notes, and check items off of the list as they complete them. 
 
 ## Available Scripts
